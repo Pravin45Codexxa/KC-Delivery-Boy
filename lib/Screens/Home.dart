@@ -53,6 +53,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
   int? selectLan;
   int? selectTheme;
   bool _isNetworkAvail = true;
+  String _selectedPriority = 'All';
   List<Order_Model> tempList = [];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   Animation? buttonSqueezeanimation;
@@ -1408,7 +1409,8 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
         var parameter = {
           USER_ID: CUR_USERID,
           LIMIT: perPage.toString(),
-          OFFSET: offset.toString()
+          OFFSET: offset.toString(),
+          'priority': _selectedPriority,
         };
         if (activeStatus != "") {
           if (activeStatus == awaitingPayment) activeStatus = "awaiting";
@@ -1423,7 +1425,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
         );
         print("param order*****$parameter********$getOrdersApi");
         var getdata = json.decode(response.body);
-        bool error = getdata["error"]; log('${getdata['query']}');
+        bool error = getdata["error"];
         total = int.parse(getdata["total"]);
 
         if (!error) {
@@ -1775,100 +1777,128 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
   }
 
   _detailHeader() {
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          flex: 2,
-          child: Card(
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(
-                18.0,
-              ),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.shopping_cart_outlined,
-                    color: Theme.of(context).colorScheme.fontColor,
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                    18.0,
                   ),
-                  Text(
-                    getTranslated(context, ORDER)!,
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        color: Theme.of(context).colorScheme.fontColor,
+                      ),
+                      Text(
+                        getTranslated(context, ORDER)!,
+                      ),
+                      Text(
+                        total.toString(),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.fontColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    total.toString(),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.fontColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Card(
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(
-                18.0,
-              ),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.account_balance_wallet_outlined,
-                    color: Theme.of(context).colorScheme.fontColor,
-                  ),
-                  Text(
-                    getTranslated(context, BAL_LBL)!,
-                  ),
-                  CUR_BALANCE != ""
-                      ? Text(
-                          getPriceFormat(
-                            context,
-                            double.parse(
-                              CUR_BALANCE,
-                            ),
-                          )!,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.fontColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      : const SizedBox()
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Card(
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.wallet_giftcard_outlined,
-                    color: Theme.of(context).colorScheme.fontColor,
+            Expanded(
+              flex: 3,
+              child: Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                    18.0,
                   ),
-                  Text(
-                    getTranslated(context, BONUS_LBL)!,
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.account_balance_wallet_outlined,
+                        color: Theme.of(context).colorScheme.fontColor,
+                      ),
+                      Text(
+                        getTranslated(context, BAL_LBL)!,
+                      ),
+                      CUR_BALANCE != ""
+                          ? Text(
+                              getPriceFormat(
+                                context,
+                                double.parse(
+                                  CUR_BALANCE,
+                                ),
+                              )!,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.fontColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          : const SizedBox()
+                    ],
                   ),
-                  Text(
-                    CUR_BONUS!,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.fontColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
-          ),
+            Expanded(
+              flex: 2,
+              child: Card(
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.wallet_giftcard_outlined,
+                        color: Theme.of(context).colorScheme.fontColor,
+                      ),
+                      Text(
+                        getTranslated(context, BONUS_LBL)!,
+                      ),
+                      Text(
+                        CUR_BONUS!,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.fontColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
+        const SizedBox(height: 8),
+        Row(children: [
+          ...['All', 'Major', 'Normal', 'Minor'].map((e) => Expanded(
+            child: GestureDetector(
+              onTap: (){
+                if(_selectedPriority == e) return;
+                  _selectedPriority = e;
+
+                _refresh();
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                margin: EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: colors.primary1),
+                    color: e == _selectedPriority ? colors.primary1 : null
+                ),
+                child: Center(child: Text(e, style: TextStyle(color: e == _selectedPriority ?colors.whites : null),)),
+              ),
+            ),
+          ),)
+        ],),
+        const SizedBox(height: 8),
       ],
     );
   }

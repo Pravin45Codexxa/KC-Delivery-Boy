@@ -291,6 +291,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                   return productItem(orderItem, model, i);
                                 },
                               ),
+                              pickupLocation(),
                               shippingDetails(),
                               priceDetails(),
                             ],
@@ -855,7 +856,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                     ),
                   )
                 : Container(),
-            widget.model!.mobile!.isNotEmpty
+            /*widget.model!.mobile!.isNotEmpty
                 ? InkWell(
                     onTap: _launchCaller,
                     child: Padding(
@@ -881,12 +882,117 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       ),
                     ),
                   )
-                : Container(),
+                : Container(),*/
           ],
         ),
       ),
     );
   }
+pickupLocation() {
+    return
+      widget.model?.store_name != null
+     ? Card(
+      elevation: 0,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          0,
+          15.0,
+          0,
+          15.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+                right: 15.0,
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'Pickup location',
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          color: Theme.of(context).colorScheme.fontColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const Spacer(),
+                  if(widget.model?.store_latitude != null)
+                  SizedBox(
+                    height: 30,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.location_on,
+                        color: Theme.of(context).colorScheme.fontColor,
+                      ),
+                      onPressed: () {
+                        _launchMap(
+                          widget.model!.store_latitude,
+                          widget.model!.store_longitude,
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+                right: 15.0,
+              ),
+              child: Text(
+                " ${capitalize(widget.model!.store_name ?? "no name")}"
+                   ,
+              ),
+            ),
+             Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 3),
+                    child: Text(
+                      "${widget.model!.store_address}",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.lightfontColor2,
+                      ),
+                    ),
+                  )
+               ,
+            widget.model!.store_phone != null
+                ? InkWell(
+                    onTap: _launchCaller,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                        vertical: 5,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.call,
+                            size: 15,
+                            color: Theme.of(context).colorScheme.fontColor,
+                          ),
+                          Text(
+                            " ${widget.model!.store_phone}",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.fontColor,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
+      ),
+    )
+   : SizedBox.shrink();
+  }
+
 
   productItem(
     OrderItem orderItem,

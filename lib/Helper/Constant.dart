@@ -72,6 +72,7 @@ const String PROMO_CODE_DIS_LBL = 'Promo Code Discount';
 const String WALLET_BAL = 'Wallet Balance';
 const String TOTAL_PRICE = 'Total Price';
 const String TOTAL_AMOUNT = 'Total Amount';
+const String PICKUP_LOCATION = 'Pickup Location';
 const String SHIPPING_DETAIL = 'Shipping Details';
 const String QUANTITY_LBL = 'Qty';
 const String ORDER_DATE = 'Order Date';
