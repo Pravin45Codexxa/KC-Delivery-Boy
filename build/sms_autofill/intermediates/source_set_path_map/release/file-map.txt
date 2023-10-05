@@ -1,0 +1,15 @@
+com.jaumard.smsautofill.sms_autofill-jetified-window-java-1.0.0-beta04-0 C:\Users\Asus\.gradle\caches\transforms-3\2f9f080e2bb0cffecc45f245f2053cbd\transformed\jetified-window-java-1.0.0-beta04\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-base-17.5.0-1 C:\Users\Asus\.gradle\caches\transforms-3\3229506f103362815a7053fc3d336768\transformed\jetified-play-services-base-17.5.0\res
+com.jaumard.smsautofill.sms_autofill-core-1.6.0-2 C:\Users\Asus\.gradle\caches\transforms-3\62951aee7b733d4949db7586e532a4c0\transformed\core-1.6.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-window-1.0.0-beta04-3 C:\Users\Asus\.gradle\caches\transforms-3\6e92227e54e359c441cc86ea2dbc847e\transformed\jetified-window-1.0.0-beta04\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-basement-17.5.0-4 C:\Users\Asus\.gradle\caches\transforms-3\9f193abf84471e77435e72110ba4e83c\transformed\jetified-play-services-basement-17.5.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-annotation-experimental-1.1.0-5 C:\Users\Asus\.gradle\caches\transforms-3\d58dd672128dc8a6c0836f8b0e99c08e\transformed\jetified-annotation-experimental-1.1.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-auth-19.2.0-6 C:\Users\Asus\.gradle\caches\transforms-3\ee8b9affeb74d78fa1717e8539c0e650\transformed\jetified-play-services-auth-19.2.0\res
+com.jaumard.smsautofill.sms_autofill-main-7 C:\Users\Asus\AppData\Local\Pub\Cache\hosted\pub.dev\sms_autofill-2.3.0\android\src\main\res
+com.jaumard.smsautofill.sms_autofill-release-8 C:\Users\Asus\AppData\Local\Pub\Cache\hosted\pub.dev\sms_autofill-2.3.0\android\src\release\res
+com.jaumard.smsautofill.sms_autofill-pngs-9 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\generated\res\pngs\release
+com.jaumard.smsautofill.sms_autofill-resValues-10 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\generated\res\resValues\release
+com.jaumard.smsautofill.sms_autofill-rs-11 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\generated\res\rs\release
+com.jaumard.smsautofill.sms_autofill-mergeReleaseResources-12 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.jaumard.smsautofill.sms_autofill-mergeReleaseResources-13 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.jaumard.smsautofill.sms_autofill-merged_res-14 E:\Projects Codexxa\KC_DeliveryBoy Flutter Project V4.0.5\build\sms_autofill\intermediates\merged_res\release

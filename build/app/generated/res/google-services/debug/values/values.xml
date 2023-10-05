@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">372380628577-k0rmhujd19b49bsb76p8filo72mhcug8.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">372380628577</string>
+    <string name="google_api_key" translatable="false">AIzaSyAaD1MnNKTW2Jse6nqmRiUSxOZmqNyypS8</string>
+    <string name="google_app_id" translatable="false">1:372380628577:android:812ff8195371f425d41c20</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAaD1MnNKTW2Jse6nqmRiUSxOZmqNyypS8</string>
+    <string name="google_storage_bucket" translatable="false">kitchen-cartage-updated.appspot.com</string>
+    <string name="project_id" translatable="false">kitchen-cartage-updated</string>
+</resources>
