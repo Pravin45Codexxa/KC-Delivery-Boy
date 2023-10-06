@@ -1934,6 +1934,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
           if (Is_APP_IN_MAINTANCE != "1") {
             getUserDetail();
             getOrder();
+
           }
 
           if (getdata["system_settings"]

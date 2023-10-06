@@ -50,6 +50,14 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    signingConfigs {
+        release {
+            storeFile file("E:\\Projects Codexxa\\NewUI KC\\upload.jks")
+            storePassword "password"
+            keyAlias "upload"
+            keyPassword "password"
+        }
+    }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -69,6 +77,14 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     } */
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 
     buildTypes {
         release {
