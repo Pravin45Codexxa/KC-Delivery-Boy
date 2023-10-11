@@ -1387,7 +1387,7 @@ pickupLocation() {
           DEL_BOY_ID: CUR_USERID,
         };
         if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id;
-        print('response body ${parameter}');
+        print('response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
         Response response = await post(
                 item ? updateOrderItemApi : updateOrderApi,
                 body: parameter,
@@ -1395,9 +1395,9 @@ pickupLocation() {
             .timeout(
           const Duration(seconds: timeOut),
         );
-
-        var getdata = json.decode(response.body);
         print('response body ${response.body}');
+        var getdata = json.decode(response.body);
+
         bool error = getdata["error"];
         String msg = getdata["message"];
         setSnackbar(msg);
