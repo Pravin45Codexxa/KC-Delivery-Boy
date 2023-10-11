@@ -1139,51 +1139,52 @@ pickupLocation() {
                                     padding: const EdgeInsets.only(left: 5.0),
                                     child: Text(
                                       () {
-                                        if (capitalize(orderItem.status!) ==
+                                        /*if (capitalize(orderItem.status!) ==
                                             "Received") {
                                           return getTranslated(
                                               context, "received")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Processed") {
                                           return getTranslated(
                                               context, "processed")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Shipped") {
                                           return getTranslated(
                                               context, "shipped")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Delivered") {
                                           return getTranslated(
                                               context, "delivered")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Returned") {
                                           return getTranslated(
                                               context, "returned")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Cancelled") {
                                           return getTranslated(
                                               context, "cancelled")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Return_request_pending") {
                                           return getTranslated(context,
                                               "RETURN_REQUEST_PENDING_LBL")!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Return_request_approved") {
-                                          return getTranslated(context,
-                                              "RETURN_REQUEST_APPROVE_LBL")!;
+                                          return 'approved';
+                                          // return getTranslated(context,
+                                          //     RETURN_REQUEST_APPROVE_LBL)!;
                                         } else if (capitalize(
-                                                orderItem.status!) ==
+                                            orderItem.status!) ==
                                             "Return_request_decline") {
                                           return getTranslated(context,
                                               "RETURN_REQUEST_DECLINE_LBL")!;
-                                        }
+                                        }*/
                                         return capitalize(orderItem.status!);
                                       }(),
                                       maxLines: 2,
@@ -1386,6 +1387,7 @@ pickupLocation() {
           DEL_BOY_ID: CUR_USERID,
         };
         if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id;
+        print('response body ${parameter}');
         Response response = await post(
                 item ? updateOrderItemApi : updateOrderApi,
                 body: parameter,
@@ -1395,6 +1397,7 @@ pickupLocation() {
         );
 
         var getdata = json.decode(response.body);
+        print('response body ${response.body}');
         bool error = getdata["error"];
         String msg = getdata["message"];
         setSnackbar(msg);
