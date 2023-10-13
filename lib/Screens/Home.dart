@@ -1411,6 +1411,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
           LIMIT: perPage.toString(),
           OFFSET: offset.toString(),
           'priority': _selectedPriority,
+
         };
         if (activeStatus != "") {
           if (activeStatus == awaitingPayment) activeStatus = "awaiting";
@@ -1743,11 +1744,21 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                     Text("Priority: ${model.priority}")
                   ],
                 ),
-              ),
-
-            ],
+              ),Padding(
+                  padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
+                 child: Row(
+                   children:[const Icon(
+                     Icons.assignment_return,
+                     color: colors.primary1,
+                     size: 14,
+                   ),
+                     Text("Return Status: ${model.return_status}")]
+                 ),
+              )],
           ),
         ),
+
         onTap: () async {
           await Navigator.push(
             context,
@@ -1934,7 +1945,6 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
           if (Is_APP_IN_MAINTANCE != "1") {
             getUserDetail();
             getOrder();
-
           }
 
           if (getdata["system_settings"]

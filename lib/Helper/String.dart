@@ -40,6 +40,7 @@ const String TITLE = 'title';
 const String MESSAGE = 'message';
 const String REMARK = 'remarks';
 const String ALL = 'all';
+const String RETURN_STATUS = 'return_status';
 const String awaitingPayment = 'Awaiting Payment';
 
 const String DATE = 'date_created';
@@ -154,7 +155,6 @@ const String ISOUTOFSTOCK = 'out_of_stock';
 const String PRODUCT_VARIENT_ID = 'product_variant_id';
 const String QTY = 'qty';
 const String CART_COUNT = 'cart_count';
-
 const String SUB_TOTAL = 'sub_total';
 const String TAX_AMT = 'tax_amount';
 const String TAX_PER = 'tax_percentage';
