@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -339,7 +341,13 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
-                                value: widget.model!.activeStatus,
+                                value: [
+                                  'return_request_pending',
+                                  'return_request_approved',
+                                  'return_request_decline'
+                                ].contains(widget.model!.activeStatus)
+                                    ? null
+                                    : widget.model!.activeStatus,
                                 onChanged: (dynamic newValue) {
                                   setState(
                                     () {
@@ -888,67 +896,69 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       ),
     );
   }
-pickupLocation() {
-    return
-      widget.model?.store_name != null
-     ? Card(
-      elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          0,
-          15.0,
-          0,
-          15.0,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 15.0,
-                right: 15.0,
+
+  pickupLocation() {
+    return widget.model?.store_name != null
+        ? Card(
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                0,
+                15.0,
+                0,
+                15.0,
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Pickup location',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.fontColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const Spacer(),
-                  if(widget.model?.store_latitude != null)
-                  SizedBox(
-                    height: 30,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.location_on,
-                        color: Theme.of(context).colorScheme.fontColor,
-                      ),
-                      onPressed: () {
-                        _launchMap(
-                          widget.model!.store_latitude,
-                          widget.model!.store_longitude,
-                        );
-                      },
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
                     ),
-                  )
-                ],
-              ),
-            ),
-            const Divider(),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 15.0,
-                right: 15.0,
-              ),
-              child: Text(
-                " ${capitalize(widget.model!.store_name ?? "no name")}"
-                   ,
-              ),
-            ),
-             Padding(
+                    child: Row(
+                      children: [
+                        Text(
+                          'Pickup location',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.fontColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        const Spacer(),
+                        if (widget.model?.store_latitude != null)
+                          SizedBox(
+                            height: 30,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.location_on,
+                                color: Theme.of(context).colorScheme.fontColor,
+                              ),
+                              onPressed: () {
+                                _launchMap(
+                                  widget.model!.store_latitude,
+                                  widget.model!.store_longitude,
+                                );
+                              },
+                            ),
+                          )
+                      ],
+                    ),
+                  ),
+                  const Divider(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
+                    child: Text(
+                      " ${capitalize(widget.model!.store_name ?? "no name")}",
+                    ),
+                  ),
+                  Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15.0, vertical: 3),
                     child: Text(
@@ -957,42 +967,42 @@ pickupLocation() {
                         color: Theme.of(context).colorScheme.lightfontColor2,
                       ),
                     ),
-                  )
-               ,
-            widget.model!.store_phone != null
-                ? InkWell(
-                    onTap: _launchCaller,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                        vertical: 5,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.call,
-                            size: 15,
-                            color: Theme.of(context).colorScheme.fontColor,
-                          ),
-                          Text(
-                            " ${widget.model!.store_phone}",
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.fontColor,
-                              decoration: TextDecoration.underline,
+                  ),
+                  widget.model!.store_phone != null
+                      ? InkWell(
+                          onTap: _launchCaller,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15.0,
+                              vertical: 5,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.call,
+                                  size: 15,
+                                  color:
+                                      Theme.of(context).colorScheme.fontColor,
+                                ),
+                                Text(
+                                  " ${widget.model!.store_phone}",
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.fontColor,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
-      ),
-    )
-   : SizedBox.shrink();
+                        )
+                      : Container(),
+                ],
+              ),
+            ),
+          )
+        : SizedBox.shrink();
   }
-
 
   productItem(
     OrderItem orderItem,
@@ -1122,8 +1132,7 @@ pickupLocation() {
                                 Expanded(
                                     flex: 2,
                                     child: Text(
-                                      "${getTranslated(
-                                              context, 'ACTIVE_STATUS_LBL')!}:",
+                                      "${getTranslated(context, 'ACTIVE_STATUS_LBL')!}:",
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall!
@@ -1387,7 +1396,8 @@ pickupLocation() {
           DEL_BOY_ID: CUR_USERID,
         };
         if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id;
-        print('response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
+        print(
+            'response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
         Response response = await post(
                 item ? updateOrderItemApi : updateOrderApi,
                 body: parameter,
@@ -1429,9 +1439,24 @@ pickupLocation() {
   }
 
   _launchCaller() async {
+
     var url = "tel:${widget.model!.mobile}";
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
+      /*awaitingPayment launch $url;
+      String waiting = null;
+      Uri.dataFromString(HttpHeaders.userAgentHeader);
+      dashedTextConfiguration;
+      noIntText(Uri.dataFromBytes(Response.bytes(bodyBytes, orderId)));
+      textDirectionToAxisDirection(order curStatus);
+      statusList flexible statement;
+      AsyncSnapshot.withData(ORDER_DELIVERED, CASH_RECEIVED);
+      STATUS = ACTIVE_STATUS;
+      HttpRequest != false;
+      DataTableSource = User;
+      ClipboardStatus = deliverd;
+      if status != true;*/
+
     } else {
       throw 'Could not launch $url';
     }
