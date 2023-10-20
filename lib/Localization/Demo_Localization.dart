@@ -42,13 +42,13 @@ class _DemoLocalizationsDelegate
   bool isSupported(Locale locale) {
     return [
       'en',
-      'zh',
-      'es',
+      //'zh',
+      //'es',
       'hi',
-      'ar',
-      'ru',
-      'ja',
-      'de',
+      //'ar',
+      //'ru',
+     // 'ja',
+      //'de',
     ].contains(locale.languageCode);
   }
 

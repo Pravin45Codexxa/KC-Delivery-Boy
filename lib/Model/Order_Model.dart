@@ -36,7 +36,7 @@ class Order_Model {
       cname,
       type,
       cdate,
-      return_status,
+      order_status,
       amount,
       cashReceived,
       message,
@@ -54,9 +54,17 @@ class Order_Model {
       store_latitude,
       store_longitude;
 
+
+  @override
+  String toString() {
+    return 'Order_Model{id: $id, name: $name, mobile: $mobile, latitude: $latitude, longitude: $longitude, delCharge: $delCharge, walBal: $walBal, promo: $promo, promoDis: $promoDis, payMethod: $payMethod, total: $total, returnInitiated: $returnInitiated, returnCompleted: $returnCompleted, subTotal: $subTotal, payable: $payable, address: $address, taxAmt: $taxAmt, taxPer: $taxPer, orderDate: $orderDate, dateTime: $dateTime, isCancleable: $isCancleable, isReturnable: $isReturnable, isAlrCancelled: $isAlrCancelled, isAlrReturned: $isAlrReturned, rtnReqSubmitted: $rtnReqSubmitted, activeStatus: $activeStatus, otp: $otp, deliveryBoyId: $deliveryBoyId, invoice: $invoice, delDate: $delDate, delTime: $delTime, cname: $cname, type: $type, cdate: $cdate, return_status: $order_status, amount: $amount, cashReceived: $cashReceived, message: $message, priority: $priority, pickupLocation: $pickupLocation, store_name: $store_name, store_email: $store_email, store_phone: $store_phone, store_address: $store_address, store_address_2: $store_address_2, store_city: $store_city, store_state: $store_state, store_country: $store_country, store_pin_code: $store_pin_code, store_latitude: $store_latitude, store_longitude: $store_longitude, itemList: $itemList, listStatus: $listStatus, listDate: $listDate}';
+  }
+
   List<OrderItem>? itemList = [];
   List<String?>? listStatus = [];
   List<String?>? listDate = [];
+
+  bool get isReturnApproved => itemList?.any((element) => element.status == 'return_request_approved') ?? false;
 
   Order_Model({
     this.id,
@@ -71,7 +79,7 @@ class Order_Model {
     this.subTotal,
     this.payable,
     this.address,
-    this.return_status,
+    this.order_status,
     this.taxPer,
     this.taxAmt,
     this.orderDate,
@@ -214,6 +222,11 @@ class OrderItem {
 
   List<String?>? listStatus = [];
   List<String?>? listDate = [];
+
+  @override
+  String toString() {
+    return 'OrderItem{id: $id, name: $name, status: $status, productId: $productId}';
+  }
 
   OrderItem(
       {this.qty,

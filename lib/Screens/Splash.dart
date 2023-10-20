@@ -52,7 +52,7 @@ class _SplashScreen extends State<Splash> {
             // ),
           ),
           Image.asset(
-            'assets/images/img_1.png',
+            'assets/images/splash_logo.png',
             height:350,
           ),
         ],

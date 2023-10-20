@@ -45,8 +45,6 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     SHIPED,
     DELIVERD,
     CANCLED,
-    RETURNED,
-    WAITING
   ];
   bool? _isCancleable, _isReturnable;
   final bool _isLoading = true;
@@ -66,6 +64,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     }
 
     if (widget.model!.payMethod == "Bank Transfer") {
+
       statusList.removeWhere((element) => element == PLACED);
     }
 
@@ -352,10 +351,11 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                   setState(
                                     () {
                                       curStatus = newValue;
+                                      colors.darkFontColor;
                                     },
                                   );
                                 },
-                                items: statusList.map(
+                                items: [...statusList].map(
                                   (String st) {
                                     return DropdownMenuItem<String>(
                                       value: st,
@@ -1015,6 +1015,10 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       val = orderItem.varient_values!.split(',');
     }
 
+    final isReturnable = orderItem.status == 'return_request_approved' || orderItem.status == 'returned';
+    final status = [...statusList, if(isReturnable) RETURNED];
+
+
     return Card(
       elevation: 0,
       child: Padding(
@@ -1122,7 +1126,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                             )
                           ],
                         ),
-                        if (orderItem.status == 'return_request_approved' ||
+                        if(orderItem.status == 'return_request_approved' ||
                             orderItem.status == 'return_request_pending' ||
                             orderItem.status == 'return_request_decline')
                           Padding(
@@ -1202,9 +1206,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                              color: Theme.of(context)
+                                              color: /*Theme.of(context)
                                                   .colorScheme
-                                                  .fontColor),
+                                                  .fontColor*/Colors.pinkAccent),
                                     ),
                                   ),
                                 )
@@ -1291,7 +1295,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                               },
                                             );
                                           },
-                                          items: statusList.map(
+                                          items: status.map(
                                             (String st) {
                                               return DropdownMenuItem<String>(
                                                 value: st,
@@ -1439,7 +1443,6 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
   }
 
   _launchCaller() async {
-
     var url = "tel:${widget.model!.mobile}";
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
@@ -1456,7 +1459,6 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       DataTableSource = User;
       ClipboardStatus = deliverd;
       if status != true;*/
-
     } else {
       throw 'Could not launch $url';
     }

@@ -149,12 +149,12 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
   List<String> langCode = [
     ENGLISH,
     HINDI,
-    CHINESE,
+    /*CHINESE,
     SPANISH,
     ARABIC,
     RUSSIAN,
     JAPANESE,
-    DEUTSCH
+    DEUTSCH*/
   ];
 
   get lightWhite => null;
@@ -1534,6 +1534,9 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
 
   orderItem(int index) {
     Order_Model model = orderList[index];
+
+    log("model --> ${model.isReturnApproved}");
+
     Color back;
 
     if ((model.activeStatus) == DELIVERD) {
@@ -1551,6 +1554,9 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
       back = Colors.red;
     } else if (model.itemList![0].status! == 'return_request_pending') {
       back = Colors.indigo.withOpacity(0.85);
+
+    } else if (model.itemList![0].status! == 'return_request_approved') {
+      back = Colors.purple;
     } else {
       back = Colors.cyan;
     }
@@ -1744,7 +1750,9 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                     Text("Priority: ${model.priority}")
                   ],
                 ),
-              ),Padding(
+              ),
+             if(model.isReturnApproved)
+              Padding(
                   padding:
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
                  child: Row(
@@ -1753,12 +1761,11 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                      color: colors.primary1,
                      size: 14,
                    ),
-                     Text("Return Status: ${model.return_status}")]
+                     Text("Return Status: Return Initiate")]
                  ),
               )],
           ),
         ),
-
         onTap: () async {
           await Navigator.push(
             context,
