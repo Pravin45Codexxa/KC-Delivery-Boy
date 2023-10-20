@@ -1083,12 +1083,12 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
           languageList = [
             getTranslated(context, 'English'),
             getTranslated(context, 'Hindi'),
-            getTranslated(context, 'Chinese'),
+          /*  getTranslated(context, 'Chinese'),
             getTranslated(context, 'Spanish'),
             getTranslated(context, 'Arabic'),
             getTranslated(context, 'Russian'),
             getTranslated(context, 'Japanese'),
-            getTranslated(context, 'Deutch'),
+            getTranslated(context, 'Deutch'),*/
           ];
           return AlertDialog(
             contentPadding: const EdgeInsets.all(0.0),
