@@ -29,15 +29,15 @@ void main() async {
   runApp(
     ChangeNotifierProvider<ThemeNotifier>(
       create: (BuildContext context) {
-        String? theme = prefs.getString(APP_THEME);
+        /*String? theme = prefs.getString(APP_THEME);
 
         if (theme == DARK) {
-          ISDARK = 'true';
+          ISDARK = "true";
         } else if (theme == LIGHT) {
-          ISDARK = 'false';
+          ISDARK = "false";
         }
 
-        if (theme == null || theme == '' || theme == DEFAULT_SYSTEM) {
+        if (theme == null || theme == "" || theme == DEFAULT_SYSTEM) {
           prefs.setString(APP_THEME, DEFAULT_SYSTEM);
           var brightness = SchedulerBinding.instance.window.platformBrightness;
           ISDARK = (brightness == Brightness.dark).toString();
@@ -45,7 +45,8 @@ void main() async {
           return ThemeNotifier(ThemeMode.system);
         }
 
-        return ThemeNotifier(theme == LIGHT ? ThemeMode.light : ThemeMode.dark);
+        return ThemeNotifier(theme == LIGHT ? ThemeMode.light : ThemeMode.dark);*/
+        return ThemeNotifier(ThemeMode.light);
       },
       child: const MyApp(),
     ),

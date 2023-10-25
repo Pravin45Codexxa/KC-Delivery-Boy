@@ -110,7 +110,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
         ThemeList = [
           "System Defualt",
           "Light Mode",
-          "Dark Mode",
+          //"Dark Mode",
         ];
       },
     );

@@ -117,7 +117,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                 _playAnimation();
 
                 Future.delayed(const Duration(seconds: 2)).then(
-                  (_) async {
+                      (_) async {
                     _isNetworkAvail = await isNetworkAvailable();
                     if (_isNetworkAvail) {
                       Navigator.pushReplacement(
@@ -129,7 +129,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                     } else {
                       await buttonController!.reverse();
                       setState(
-                        () {},
+                            () {},
                       );
                     }
                   },
@@ -208,361 +208,361 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       ),
       body: _isNetworkAvail
           ? Stack(
-              children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        controller: controller,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Card(
-                                elevation: 0,
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${getTranslated(context, ORDER_ID_LBL)!} - ${model.id!}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightfontColor2,
-                                            ),
-                                      ),
-                                      Text(
-                                        "${getTranslated(context, ORDER_DATE)!} - ${model.orderDate!}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightfontColor2,
-                                            ),
-                                      ),
-                                      Text(
-                                        "${getTranslated(context, PAYMENT_MTHD)!} - ${model.payMethod!}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightfontColor2,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              model.delDate != "" && model.delDate!.isNotEmpty
-                                  ? Card(
-                                      elevation: 0,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Text(
-                                          "${getTranslated(context, PREFER_DATE_TIME)!}: ${model.delDate!} - ${model.delTime!}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .lightfontColor2,
-                                              ),
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: model.itemList!.length,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, i) {
-                                  OrderItem orderItem = model.itemList![i];
-                                  return productItem(orderItem, model, i);
-                                },
-                              ),
-                              pickupLocation(),
-                              shippingDetails(),
-                              priceDetails(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: DropdownButtonFormField(
-                                dropdownColor:
-                                    Theme.of(context).colorScheme.lightWhite,
-                                isDense: true,
-                                iconEnabledColor:
-                                    Theme.of(context).colorScheme.fontColor,
-                                hint: Text(
-                                  getTranslated(context, UpdateStatus)!,
-                                  style: Theme.of(this.context)
+        children: [
+          Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: controller,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 0,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${getTranslated(context, ORDER_ID_LBL)!} - ${model.id!}",
+                                  style: Theme.of(context)
                                       .textTheme
                                       .titleSmall!
                                       .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .fontColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  isDense: true,
-                                  fillColor:
-                                      Theme.of(context).colorScheme.lightWhite,
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 10),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .fontColor,
-                                    ),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .lightfontColor2,
                                   ),
                                 ),
-                                value: [
-                                  'return_request_pending',
-                                  'return_request_approved',
-                                  'return_request_decline'
-                                ].contains(widget.model!.activeStatus)
-                                    ? null
-                                    : widget.model!.activeStatus,
-                                onChanged: (dynamic newValue) {
-                                  setState(
-                                    () {
-                                      curStatus = newValue;
-                                      colors.darkFontColor;
-                                    },
-                                  );
-                                },
-                                items: [...statusList].map(
-                                  (String st) {
-                                    return DropdownMenuItem<String>(
-                                      value: st,
-                                      child: Text(
-                                        capitalize(st),
-                                        style: Theme.of(this.context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .fontColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                    );
-                                  },
-                                ).toList(),
+                                Text(
+                                  "${getTranslated(context, ORDER_DATE)!} - ${model.orderDate!}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .lightfontColor2,
+                                  ),
+                                ),
+                                Text(
+                                  "${getTranslated(context, PAYMENT_MTHD)!} - ${model.payMethod!}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .lightfontColor2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        model.delDate != "" && model.delDate!.isNotEmpty
+                            ? Card(
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              "${getTranslated(context, PREFER_DATE_TIME)!}: ${model.delDate!} - ${model.delTime!}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .lightfontColor2,
                               ),
                             ),
                           ),
-                          RawMaterialButton(
-                            constraints: const BoxConstraints.expand(
-                                width: 42, height: 42),
-                            onPressed: () {
-                              if (model.otp != "" &&
-                                  model.otp!.isNotEmpty &&
-                                  model.otp != "0" &&
-                                  curStatus == DELIVERD) {
-                                otpDialog(
-                                  curStatus,
-                                  model.otp,
-                                  model.id,
-                                  false,
-                                  0,
-                                );
-                              } else {
-                                updateOrder(
-                                  curStatus,
-                                  updateOrderApi,
-                                  model.id,
-                                  false,
-                                  0,
-                                );
-                              }
-                            },
-                            elevation: 2.0,
-                            fillColor: Theme.of(context).colorScheme.fontColor,
-                            padding: const EdgeInsets.only(left: 5),
-                            shape: const CircleBorder(),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.send,
-                                size: 20,
-                                color: Theme.of(context).colorScheme.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                        )
+                            : Container(),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: model.itemList!.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, i) {
+                            OrderItem orderItem = model.itemList![i];
+                            return productItem(orderItem, model, i);
+                          },
+                        ),
+                        pickupLocation(),
+                        shippingDetails(),
+                        priceDetails(),
+                      ],
+                    ),
+                  ),
                 ),
-                showCircularProgress(
-                    _isProgress, Theme.of(context).colorScheme.primary),
-              ],
-            )
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(10.0),
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         child: Padding(
+              //           padding: const EdgeInsets.only(right: 8.0),
+              //           child: DropdownButtonFormField(
+              //             dropdownColor:
+              //                 Theme.of(context).colorScheme.lightWhite,
+              //             isDense: true,
+              //             iconEnabledColor:
+              //                 Theme.of(context).colorScheme.fontColor,
+              //             hint: Text(
+              //               getTranslated(context, UpdateStatus)!,
+              //               style: Theme.of(this.context)
+              //                   .textTheme
+              //                   .titleSmall!
+              //                   .copyWith(
+              //                     color: Theme.of(context)
+              //                         .colorScheme
+              //                         .fontColor,
+              //                     fontWeight: FontWeight.bold,
+              //                   ),
+              //             ),
+              //             decoration: InputDecoration(
+              //               filled: true,
+              //               isDense: true,
+              //               fillColor:
+              //                   Theme.of(context).colorScheme.lightWhite,
+              //               contentPadding: const EdgeInsets.symmetric(
+              //                   vertical: 10, horizontal: 10),
+              //               enabledBorder: OutlineInputBorder(
+              //                 borderSide: BorderSide(
+              //                   color: Theme.of(context)
+              //                       .colorScheme
+              //                       .fontColor,
+              //                 ),
+              //               ),
+              //             ),
+              //             value: [
+              //               'return_request_pending',
+              //               'return_request_approved',
+              //               'return_request_decline'
+              //             ].contains(widget.model!.activeStatus)
+              //                 ? widget.model!.activeStatus
+              //                 : null,
+              //             onChanged: (dynamic newValue) {
+              //               setState(
+              //                 () {
+              //                   curStatus = newValue;
+              //                   colors.darkFontColor;
+              //                 },
+              //               );
+              //             },
+              //             items: [...statusList].map(
+              //               (String st) {
+              //                 return DropdownMenuItem<String>(
+              //                   value: st,
+              //                   child: Text(
+              //                     capitalize(st),
+              //                     style: Theme.of(this.context)
+              //                         .textTheme
+              //                         .titleSmall!
+              //                         .copyWith(
+              //                           color: Theme.of(context)
+              //                               .colorScheme
+              //                               .fontColor,
+              //                           fontWeight: FontWeight.bold,
+              //                         ),
+              //                   ),
+              //                 );
+              //               },
+              //             ).toList(),
+              //           ),
+              //         ),
+              //       ),
+              //       RawMaterialButton(
+              //         constraints: const BoxConstraints.expand(
+              //             width: 42, height: 42),
+              //         onPressed: () {
+              //           if (model.otp != "" &&
+              //               model.otp!.isNotEmpty &&
+              //               model.otp != "0" &&
+              //               curStatus == DELIVERD) {
+              //             otpDialog(
+              //               curStatus,
+              //               model.otp,
+              //               model.id,
+              //               false,
+              //               0,
+              //             );
+              //           } else {
+              //             updateOrder(
+              //               curStatus,
+              //               updateOrderApi,
+              //               model.id,
+              //               false,
+              //               0,
+              //             );
+              //           }
+              //         },
+              //         elevation: 2.0,
+              //         fillColor: Theme.of(context).colorScheme.fontColor,
+              //         padding: const EdgeInsets.only(left: 5),
+              //         shape: const CircleBorder(),
+              //         child: Align(
+              //           alignment: Alignment.center,
+              //           child: Icon(
+              //             Icons.send,
+              //             size: 20,
+              //             color: Theme.of(context).colorScheme.white,
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // )
+            ],
+          ),
+          showCircularProgress(
+              _isProgress, Theme.of(context).colorScheme.primary),
+        ],
+      )
           : noInternet(context),
     );
   }
 
   otpDialog(
-    String? curSelected,
-    String? otp,
-    String? id,
-    bool item,
-    int index,
-  ) async {
+      String? curSelected,
+      String? otp,
+      String? id,
+      bool item,
+      int index,
+      ) async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
         return StatefulBuilder(
             builder: (BuildContext context, StateSetter setStater) {
-          return AlertDialog(
-            contentPadding: const EdgeInsets.all(0.0),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  5.0,
-                ),
-              ),
-            ),
-            content: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      20.0,
-                      20.0,
-                      0,
-                      2.0,
-                    ),
-                    child: Text(
-                      OTP_LBL,
-                      style: Theme.of(this.context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.fontColor,
-                          ),
+              return AlertDialog(
+                contentPadding: const EdgeInsets.all(0.0),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      5.0,
                     ),
                   ),
-                  const Divider(),
-                  Form(
-                    key: _formkey,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                            20.0,
-                            0,
-                            20.0,
-                            0,
+                ),
+                content: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          20.0,
+                          20.0,
+                          0,
+                          2.0,
+                        ),
+                        child: Text(
+                          OTP_LBL,
+                          style: Theme.of(this.context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                            color: Theme.of(context).colorScheme.fontColor,
                           ),
-                          child: TextFormField(
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.fontColor),
-                            keyboardType: TextInputType.number,
-                            validator: (String? value) {
-                              if (value!.isEmpty) {
-                                return getTranslated(context, FIELD_REQUIRED);
-                              } else if (value.trim() != otp) {
-                                return getTranslated(context, OTPERROR)!;
-                              } else {
-                                return null;
-                              }
-                            },
-                            autovalidateMode:
+                        ),
+                      ),
+                      const Divider(),
+                      Form(
+                        key: _formkey,
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                20.0,
+                                0,
+                                20.0,
+                                0,
+                              ),
+                              child: TextFormField(
+                                style: TextStyle(
+                                    color: Theme.of(context).colorScheme.fontColor),
+                                keyboardType: TextInputType.number,
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    return getTranslated(context, FIELD_REQUIRED);
+                                  } else if (value.trim() != otp) {
+                                    return getTranslated(context, OTPERROR)!;
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            decoration: InputDecoration(
-                              hintText: getTranslated(context, OTP_ENTER)!,
-                              hintStyle: Theme.of(this.context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
+                                decoration: InputDecoration(
+                                  hintText: getTranslated(context, OTP_ENTER)!,
+                                  hintStyle: Theme.of(this.context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
                                         .lightfontColor,
                                     fontWeight: FontWeight.normal,
                                   ),
+                                ),
+                                controller: otpC,
+                              ),
                             ),
-                            controller: otpC,
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: Text(
-                  getTranslated(context, CANCEL)!,
-                  style: Theme.of(this.context).textTheme.titleSmall!.copyWith(
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text(
+                      getTranslated(context, CANCEL)!,
+                      style: Theme.of(this.context).textTheme.titleSmall!.copyWith(
                         color: Theme.of(context).colorScheme.lightfontColor,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              TextButton(
-                child: Text(
-                  getTranslated(context, SEND_LBL)!,
-                  style: Theme.of(this.context).textTheme.titleSmall!.copyWith(
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  TextButton(
+                    child: Text(
+                      getTranslated(context, SEND_LBL)!,
+                      style: Theme.of(this.context).textTheme.titleSmall!.copyWith(
                         color: Theme.of(context).colorScheme.fontColor,
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-                onPressed: () {
-                  final form = _formkey.currentState!;
-                  if (form.validate()) {
-                    form.save();
-                    setState(
-                      () {
-                        Navigator.pop(context);
-                      },
-                    );
-                    updateOrder(
-                      curSelected,
-                      updateOrderApi,
-                      id,
-                      item,
-                      index,
-                    );
-                  }
-                },
-              ),
-            ],
-          );
-        });
+                    ),
+                    onPressed: () {
+                      final form = _formkey.currentState!;
+                      if (form.validate()) {
+                        form.save();
+                        setState(
+                              () {
+                            Navigator.pop(context);
+                          },
+                        );
+                        updateOrder(
+                          curSelected,
+                          updateOrderApi,
+                          id,
+                          item,
+                          index,
+                        );
+                      }
+                    },
+                  ),
+                ],
+              );
+            });
       },
     );
   }
@@ -572,10 +572,10 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
 
     if (Platform.isAndroid) {
       url =
-          "https://www.google.com/maps/dir/?api=1&destination=$lat,$lng&travelmode=driving&dir_action=navigate";
+      "https://www.google.com/maps/dir/?api=1&destination=$lat,$lng&travelmode=driving&dir_action=navigate";
     } else {
       url =
-          "http://maps.apple.com/?saddr=&daddr=$lat,$lng&directionsmode=driving&dir_action=navigate";
+      "http://maps.apple.com/?saddr=&daddr=$lat,$lng&directionsmode=driving&dir_action=navigate";
     }
     await launch(url);
   }
@@ -601,9 +601,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
               child: Text(
                 getTranslated(context, PRICE_DETAIL)!,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: Theme.of(context).colorScheme.fontColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Theme.of(context).colorScheme.fontColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const Divider(),
@@ -618,8 +618,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, PRICE_LBL)!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     getPriceFormat(
@@ -629,8 +629,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       ),
                     )!,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   )
                 ],
               ),
@@ -643,8 +643,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, DELIVERY_CHARGE_LBL)!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     getPriceFormat(
@@ -654,8 +654,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       ),
                     )!,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   )
                 ],
               ),
@@ -671,8 +671,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, TAXPER)!} (${widget.model!.taxPer!}) :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     getPriceFormat(
@@ -682,8 +682,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       ),
                     )!,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                 ],
               ),
@@ -699,8 +699,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, PROMO_CODE_DIS_LBL)!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     "-${getPriceFormat(
@@ -710,8 +710,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       ),
                     )!}",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                 ],
               ),
@@ -730,14 +730,14 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       WALLET_BAL,
                     )!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     "-${getPriceFormat(context, double.parse(widget.model!.walBal!))!}",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   )
                 ],
               ),
@@ -750,15 +750,15 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, TOTAL_PRICE)!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   ),
                   Text(
                     getPriceFormat(
                         context, double.parse(widget.model!.total!))!,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor2,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor2,
+                    ),
                   )
                 ],
               ),
@@ -771,9 +771,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     "${getTranslated(context, TOTAL_AMOUNT)!} :",
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
                     getPriceFormat(
@@ -781,9 +781,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       double.parse(widget.model!.payable!),
                     )!,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.lightfontColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: Theme.of(context).colorScheme.lightfontColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   )
                 ],
               ),
@@ -817,9 +817,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   Text(
                     getTranslated(context, SHIPPING_DETAIL)!,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.fontColor,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      color: Theme.of(context).colorScheme.fontColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const Spacer(),
                   SizedBox(
@@ -854,15 +854,15 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             ),
             widget.model!.address!.isNotEmpty
                 ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 3),
-                    child: Text(
-                      widget.model!.address!,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.lightfontColor2,
-                      ),
-                    ),
-                  )
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0, vertical: 3),
+              child: Text(
+                widget.model!.address!,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.lightfontColor2,
+                ),
+              ),
+            )
                 : Container(),
             /*widget.model!.mobile!.isNotEmpty
                 ? InkWell(
@@ -900,115 +900,115 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
   pickupLocation() {
     return widget.model?.store_name != null
         ? Card(
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                0,
-                15.0,
-                0,
-                15.0,
+      elevation: 0,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          0,
+          15.0,
+          0,
+          15.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+                right: 15.0,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15.0,
-                      right: 15.0,
+                  Text(
+                    'Pickup location',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(
+                      color: Theme.of(context).colorScheme.fontColor,
+                      fontWeight: FontWeight.bold,
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Pickup location',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.fontColor,
-                                fontWeight: FontWeight.bold,
-                              ),
+                  ),
+                  const Spacer(),
+                  if (widget.model?.store_latitude != null)
+                    SizedBox(
+                      height: 30,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.location_on,
+                          color: Theme.of(context).colorScheme.fontColor,
                         ),
-                        const Spacer(),
-                        if (widget.model?.store_latitude != null)
-                          SizedBox(
-                            height: 30,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.location_on,
-                                color: Theme.of(context).colorScheme.fontColor,
-                              ),
-                              onPressed: () {
-                                _launchMap(
-                                  widget.model!.store_latitude,
-                                  widget.model!.store_longitude,
-                                );
-                              },
-                            ),
-                          )
-                      ],
-                    ),
-                  ),
-                  const Divider(),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15.0,
-                      right: 15.0,
-                    ),
-                    child: Text(
-                      " ${capitalize(widget.model!.store_name ?? "no name")}",
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 3),
-                    child: Text(
-                      "${widget.model!.store_address}",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.lightfontColor2,
+                        onPressed: () {
+                          _launchMap(
+                            widget.model!.store_latitude,
+                            widget.model!.store_longitude,
+                          );
+                        },
                       ),
-                    ),
-                  ),
-                  widget.model!.store_phone != null
-                      ? InkWell(
-                          onTap: _launchCaller,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 15.0,
-                              vertical: 5,
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.call,
-                                  size: 15,
-                                  color:
-                                      Theme.of(context).colorScheme.fontColor,
-                                ),
-                                Text(
-                                  " ${widget.model!.store_phone}",
-                                  style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.fontColor,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      : Container(),
+                    )
                 ],
               ),
             ),
-          )
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+                right: 15.0,
+              ),
+              child: Text(
+                " ${capitalize(widget.model!.store_name ?? "no name")}",
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0, vertical: 3),
+              child: Text(
+                "${widget.model!.store_address}",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.lightfontColor2,
+                ),
+              ),
+            ),
+            widget.model!.store_phone != null
+                ? InkWell(
+              onTap: _launchCaller,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                  vertical: 5,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.call,
+                      size: 15,
+                      color:
+                      Theme.of(context).colorScheme.fontColor,
+                    ),
+                    Text(
+                      " ${widget.model!.store_phone}",
+                      style: TextStyle(
+                        color:
+                        Theme.of(context).colorScheme.fontColor,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+                : Container(),
+          ],
+        ),
+      ),
+    )
         : SizedBox.shrink();
   }
 
   productItem(
-    OrderItem orderItem,
-    Order_Model model,
-    int i,
-  ) {
+      OrderItem orderItem,
+      Order_Model model,
+      int i,
+      ) {
     List? att, val;
     if (orderItem.attr_name!.isNotEmpty) {
       att = orderItem.attr_name!.split(',');
@@ -1046,56 +1046,56 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                         Text(
                           orderItem.name ?? '',
                           style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .lightfontColor,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          Theme.of(context).textTheme.titleMedium!.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .lightfontColor,
+                            fontWeight: FontWeight.normal,
+                          ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                         orderItem.attr_name!.isNotEmpty
                             ? ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: att!.length,
-                                itemBuilder: (context, index) {
-                                  return Row(
-                                    children: [
-                                      Flexible(
-                                        child: Text(
-                                          att![index].trim() + ":",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .lightfontColor2,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 5.0),
-                                        child: Text(
-                                          val![index],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .lightfontColor,
-                                              ),
-                                        ),
-                                      )
-                                    ],
-                                  );
-                                },
-                              )
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: att!.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    att![index].trim() + ":",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .lightfontColor2,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.only(left: 5.0),
+                                  child: Text(
+                                    val![index],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .lightfontColor,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        )
                             : Container(),
                         Row(
                           children: [
@@ -1105,10 +1105,10 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                   .textTheme
                                   .titleSmall!
                                   .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .lightfontColor2,
-                                  ),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .lightfontColor2,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 5.0),
@@ -1118,10 +1118,10 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                     .textTheme
                                     .titleSmall!
                                     .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .lightfontColor,
-                                    ),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .lightfontColor,
+                                ),
                               ),
                             )
                           ],
@@ -1141,17 +1141,17 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .lightfontColor,
-                                          ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .lightfontColor,
+                                      ),
                                     )),
                                 Expanded(
                                   flex: 3,
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 5.0),
                                     child: Text(
-                                      () {
+                                          () {
                                         /*if (capitalize(orderItem.status!) ==
                                             "Received") {
                                           return getTranslated(
@@ -1198,7 +1198,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                           return getTranslated(context,
                                               "RETURN_REQUEST_DECLINE_LBL")!;
                                         }*/
-                                        return capitalize(orderItem.status!);
+                                        return capitalize(orderItem.status! == "return_request_approved" ? "Pickup" : orderItem.status!);
                                       }(),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
@@ -1206,7 +1206,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                           .textTheme
                                           .titleSmall!
                                           .copyWith(
-                                              color: /*Theme.of(context)
+                                          color: /*Theme.of(context)
                                                   .colorScheme
                                                   .fontColor*/Colors.pinkAccent),
                                     ),
@@ -1224,148 +1224,147 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                               .textTheme
                               .titleMedium!
                               .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.fontColor),
+                              color:
+                              Theme.of(context).colorScheme.fontColor),
                         ),
-                        widget.model!.itemList!.length > 1
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 8.0),
-                                        child: DropdownButtonFormField(
-                                          dropdownColor: Theme.of(context)
-                                              .colorScheme
-                                              .lightWhite,
-                                          isDense: true,
-                                          iconEnabledColor: Theme.of(context)
+                        Padding(
+                          padding:
+                          const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                  const EdgeInsets.only(right: 8.0),
+                                  child: DropdownButtonFormField(
+                                    dropdownColor: Theme.of(context)
+                                        .colorScheme
+                                        .lightWhite,
+                                    isDense: true,
+                                    iconEnabledColor: Theme.of(context)
+                                        .colorScheme
+                                        .fontColor,
+                                    //iconSize: 40,
+                                    hint: Text(
+                                      getTranslated(
+                                          context, UpdateStatus)!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .fontColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      isDense: true,
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .lightWhite,
+                                      contentPadding:
+                                      const EdgeInsets.symmetric(
+                                        vertical: 10,
+                                        horizontal: 10,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Theme.of(context)
                                               .colorScheme
                                               .fontColor,
-                                          //iconSize: 40,
-                                          hint: Text(
-                                            getTranslated(
-                                                context, UpdateStatus)!,
+                                        ),
+                                      ),
+                                    ),
+                                    value:
+                                    (orderItem.status ==
+                                        'return_request_approved' ||
+                                        orderItem.status ==
+                                            'return_request_pending' ||
+                                        orderItem.status ==
+                                            'return_request_decline')
+                                        ? null
+                                        : orderItem.status,
+                                    onChanged: (dynamic newValue) {
+                                      setState(
+                                            () {
+                                          orderItem.curSelected =
+                                              newValue;
+                                        },
+                                      );
+                                    },
+                                    items: status.map(
+                                          (String st) {
+                                        return DropdownMenuItem<String>(
+                                          value: st,
+                                          child: Text(
+                                            capitalize(st),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleSmall!
                                                 .copyWith(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .fontColor,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            isDense: true,
-                                            fillColor: Theme.of(context)
-                                                .colorScheme
-                                                .lightWhite,
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                              vertical: 10,
-                                              horizontal: 10,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .fontColor,
-                                              ),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .fontColor,
+                                              fontWeight:
+                                              FontWeight.bold,
                                             ),
                                           ),
-                                          value:
-                                              (orderItem.status ==
-                                                          'return_request_approved' ||
-                                                      orderItem.status ==
-                                                          'return_request_pending' ||
-                                                      orderItem.status ==
-                                                          'return_request_decline')
-                                                  ? null
-                                                  : orderItem.status,
-                                          onChanged: (dynamic newValue) {
-                                            setState(
-                                              () {
-                                                orderItem.curSelected =
-                                                    newValue;
-                                              },
-                                            );
-                                          },
-                                          items: status.map(
-                                            (String st) {
-                                              return DropdownMenuItem<String>(
-                                                value: st,
-                                                child: Text(
-                                                  capitalize(st),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleSmall!
-                                                      .copyWith(
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .fontColor,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                ),
-                                              );
-                                            },
-                                          ).toList(),
-                                        ),
-                                      ),
-                                    ),
-                                    RawMaterialButton(
-                                      constraints: const BoxConstraints.expand(
-                                        width: 42,
-                                        height: 42,
-                                      ),
-                                      onPressed: () {
-                                        if (model.otp != "" &&
-                                            model.otp!.isNotEmpty &&
-                                            model.otp != "0" &&
-                                            orderItem.curSelected == DELIVERD) {
-                                          otpDialog(
-                                            orderItem.curSelected,
-                                            model.otp,
-                                            model.id,
-                                            true,
-                                            i,
-                                          );
-                                        } else {
-                                          updateOrder(
-                                            orderItem.curSelected,
-                                            updateOrderApi,
-                                            model.id,
-                                            true,
-                                            i,
-                                          );
-                                        }
+                                        );
                                       },
-                                      elevation: 2.0,
-                                      fillColor: Theme.of(context)
-                                          .colorScheme
-                                          .fontColor,
-                                      padding: const EdgeInsets.only(left: 5),
-                                      shape: const CircleBorder(),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Icon(
-                                          Icons.send,
-                                          size: 20,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .white,
-                                        ),
-                                      ),
-                                    )
-                                  ],
+                                    ).toList(),
+                                  ),
+                                ),
+                              ),
+                              RawMaterialButton(
+                                constraints: const BoxConstraints.expand(
+                                  width: 42,
+                                  height: 42,
+                                ),
+                                onPressed: () {
+                                  if (model.otp != "" &&
+                                      model.otp!.isNotEmpty &&
+                                      model.otp != "0" &&
+                                      orderItem.curSelected == DELIVERD) {
+                                    otpDialog(
+                                      orderItem.curSelected,
+                                      model.otp,
+                                      model.id,
+                                      true,
+                                      i,
+                                    );
+                                  } else {
+                                    updateOrder(
+                                      orderItem.curSelected,
+                                      updateOrderApi,
+                                      model.id,
+                                      true,
+                                      i,
+                                    );
+                                  }
+                                },
+                                elevation: 2.0,
+                                fillColor: Theme.of(context)
+                                    .colorScheme
+                                    .fontColor,
+                                padding: const EdgeInsets.only(left: 5),
+                                shape: const CircleBorder(),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.send,
+                                    size: 20,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .white,
+                                  ),
                                 ),
                               )
-                            : Container()
+                            ],
+                          ),
+                        )
+
                       ],
                     ),
                   ),
@@ -1379,17 +1378,17 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
   }
 
   Future<void> updateOrder(
-    String? status,
-    Uri api,
-    String? id,
-    bool item,
-    int index,
-  ) async {
+      String? status,
+      Uri api,
+      String? id,
+      bool item,
+      int index,
+      ) async {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
       try {
         setState(
-          () {
+              () {
             _isProgress = true;
           },
         );
@@ -1403,9 +1402,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
         print(
             'response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
         Response response = await post(
-                item ? updateOrderItemApi : updateOrderApi,
-                body: parameter,
-                headers: headers)
+            item ? updateOrderItemApi : updateOrderApi,
+            body: parameter,
+            headers: headers)
             .timeout(
           const Duration(seconds: timeOut),
         );
@@ -1424,7 +1423,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
         }
 
         setState(
-          () {
+              () {
             _isProgress = false;
           },
         );
@@ -1435,7 +1434,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       }
     } else {
       setState(
-        () {
+            () {
           _isNetworkAvail = false;
         },
       );
