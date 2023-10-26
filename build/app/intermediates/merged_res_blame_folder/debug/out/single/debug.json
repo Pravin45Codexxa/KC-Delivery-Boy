@@ -1,122 +1,122 @@
 [
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxxhdpi_ic_launcher_adaptive_fore.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxxhdpi/ic_launcher_adaptive_fore.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-hdpi_ic_launcher_adaptive_fore.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-hdpi/ic_launcher_adaptive_fore.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxhdpi/ic_launcher_foreground.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xhdpi/ic_launcher_adaptive_fore.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/drawable_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/drawable/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/drawable_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/drawable/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xhdpi/ic_launcher_foreground.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-hdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher_adaptive_fore.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxxhdpi/ic_launcher_adaptive_fore.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher_adaptive_back.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxxhdpi/ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxxhdpi_ic_launcher_adaptive_back.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxxhdpi/ic_launcher_adaptive_back.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-ldpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-ldpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-hdpi/ic_launcher_foreground.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-mdpi_ic_launcher_adaptive_back.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-mdpi/ic_launcher_adaptive_back.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/drawable_launch_background.xml.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/drawable/launch_background.xml"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-hdpi_ic_launcher_adaptive_fore.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-hdpi/ic_launcher_adaptive_fore.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-mdpi_ic_launcher_adaptive_back.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-mdpi/ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-hdpi_ic_launcher_adaptive_back.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-hdpi/ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-hdpi_ic_launcher_adaptive_back.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-hdpi/ic_launcher_adaptive_back.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xhdpi_ic_launcher_adaptive_back.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xhdpi/ic_launcher_adaptive_back.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xhdpi_ic_launcher_adaptive_back.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xhdpi/ic_launcher_adaptive_back.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/drawable_launch_background.xml.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/drawable/launch_background.xml"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xhdpi_ic_launcher_adaptive_fore.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xhdpi/ic_launcher_adaptive_fore.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-mdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-mdpi_ic_launcher_adaptive_fore.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-mdpi/ic_launcher_adaptive_fore.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxhdpi_ic_launcher_adaptive_back.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxhdpi/ic_launcher_adaptive_back.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-ldpi_ic_launcher.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-ldpi/ic_launcher.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-mdpi/ic_launcher_foreground.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxhdpi_ic_launcher_adaptive_fore.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxhdpi/ic_launcher_adaptive_fore.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xxhdpi_ic_launcher_adaptive_fore.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xxhdpi/ic_launcher_adaptive_fore.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-mdpi_ic_launcher_adaptive_fore.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-mdpi/ic_launcher_adaptive_fore.png"
     },
     {
-        "merged": "com.kitchencartage.deliveryboy.app-merged_res-32:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.kitchencartage.deliveryboy.app-main-25:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.kitchencartage.deliveryboy.app-merged_res-8:/mipmap-xxhdpi_ic_launcher_adaptive_back.png.flat",
+        "source": "com.kitchencartage.deliveryboy.app-main-1:/mipmap-xxhdpi/ic_launcher_adaptive_back.png"
     }
 ]

@@ -4,12 +4,21 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'Constant.dart';
 import 'Session.dart';
 import 'String.dart';
+
+FlutterTts flutterTts = FlutterTts();
+
+_speak(String bodyText) async{
+  await flutterTts.speak(bodyText);
+}
+
+
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -59,8 +68,10 @@ class PushNotificationService {
 
         if (image != "") {
           generateImageNotication(title, body, image, type);
+          _speak(body);
         } else {
           generateSimpleNotication(title, body, type);
+          _speak(body);
         }
       },
     );
@@ -108,7 +119,8 @@ class PushNotificationService {
         'big text channel id', 'big text channel name',
         channelDescription: 'big text channel description',
         largeIcon: FilePathAndroidBitmap(largeIconPath),
-        styleInformation: bigPictureStyleInformation);
+        styleInformation: bigPictureStyleInformation,
+        playSound: true);
     var platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin
