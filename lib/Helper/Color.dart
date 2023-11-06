@@ -25,6 +25,8 @@ extension colors on ColorScheme {
 
   static const Color whites = Color(0xcfFFFFFF);
 
+  static const Color blue2 = Color(0xcf00BBD4);
+
   String get webFontColor =>
       brightness == Brightness.dark ? lightFontColor : darkFontColor;
 

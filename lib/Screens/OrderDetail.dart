@@ -300,124 +300,124 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(10.0),
-              //   child: Row(
-              //     children: [
-              //       Expanded(
-              //         child: Padding(
-              //           padding: const EdgeInsets.only(right: 8.0),
-              //           child: DropdownButtonFormField(
-              //             dropdownColor:
-              //                 Theme.of(context).colorScheme.lightWhite,
-              //             isDense: true,
-              //             iconEnabledColor:
-              //                 Theme.of(context).colorScheme.fontColor,
-              //             hint: Text(
-              //               getTranslated(context, UpdateStatus)!,
-              //               style: Theme.of(this.context)
-              //                   .textTheme
-              //                   .titleSmall!
-              //                   .copyWith(
-              //                     color: Theme.of(context)
-              //                         .colorScheme
-              //                         .fontColor,
-              //                     fontWeight: FontWeight.bold,
-              //                   ),
-              //             ),
-              //             decoration: InputDecoration(
-              //               filled: true,
-              //               isDense: true,
-              //               fillColor:
-              //                   Theme.of(context).colorScheme.lightWhite,
-              //               contentPadding: const EdgeInsets.symmetric(
-              //                   vertical: 10, horizontal: 10),
-              //               enabledBorder: OutlineInputBorder(
-              //                 borderSide: BorderSide(
-              //                   color: Theme.of(context)
-              //                       .colorScheme
-              //                       .fontColor,
-              //                 ),
-              //               ),
-              //             ),
-              //             value: [
-              //               'return_request_pending',
-              //               'return_request_approved',
-              //               'return_request_decline'
-              //             ].contains(widget.model!.activeStatus)
-              //                 ? widget.model!.activeStatus
-              //                 : null,
-              //             onChanged: (dynamic newValue) {
-              //               setState(
-              //                 () {
-              //                   curStatus = newValue;
-              //                   colors.darkFontColor;
-              //                 },
-              //               );
-              //             },
-              //             items: [...statusList].map(
-              //               (String st) {
-              //                 return DropdownMenuItem<String>(
-              //                   value: st,
-              //                   child: Text(
-              //                     capitalize(st),
-              //                     style: Theme.of(this.context)
-              //                         .textTheme
-              //                         .titleSmall!
-              //                         .copyWith(
-              //                           color: Theme.of(context)
-              //                               .colorScheme
-              //                               .fontColor,
-              //                           fontWeight: FontWeight.bold,
-              //                         ),
-              //                   ),
-              //                 );
-              //               },
-              //             ).toList(),
-              //           ),
-              //         ),
-              //       ),
-              //       RawMaterialButton(
-              //         constraints: const BoxConstraints.expand(
-              //             width: 42, height: 42),
-              //         onPressed: () {
-              //           if (model.otp != "" &&
-              //               model.otp!.isNotEmpty &&
-              //               model.otp != "0" &&
-              //               curStatus == DELIVERD) {
-              //             otpDialog(
-              //               curStatus,
-              //               model.otp,
-              //               model.id,
-              //               false,
-              //               0,
-              //             );
-              //           } else {
-              //             updateOrder(
-              //               curStatus,
-              //               updateOrderApi,
-              //               model.id,
-              //               false,
-              //               0,
-              //             );
-              //           }
-              //         },
-              //         elevation: 2.0,
-              //         fillColor: Theme.of(context).colorScheme.fontColor,
-              //         padding: const EdgeInsets.only(left: 5),
-              //         shape: const CircleBorder(),
-              //         child: Align(
-              //           alignment: Alignment.center,
-              //           child: Icon(
-              //             Icons.send,
-              //             size: 20,
-              //             color: Theme.of(context).colorScheme.white,
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
-              // )
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: DropdownButtonFormField(
+                          dropdownColor:
+                              Theme.of(context).colorScheme.lightWhite,
+                          isDense: true,
+                          iconEnabledColor:
+                              Theme.of(context).colorScheme.fontColor,
+                          hint: Text(
+                            getTranslated(context, UpdateStatus)!,
+                            style: Theme.of(this.context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .fontColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          decoration: InputDecoration(
+                            filled: true,
+                            isDense: true,
+                            fillColor:
+                                Theme.of(context).colorScheme.lightWhite,
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .fontColor,
+                              ),
+                            ),
+                          ),
+                          value: [
+                            'return_request_pending',
+                            'return_request_approved',
+                            'return_request_decline'
+                          ].contains(widget.model!.activeStatus)
+                              ? widget.model!.activeStatus
+                              : null,
+                          onChanged: (dynamic newValue) {
+                            setState(
+                              () {
+                                curStatus = newValue;
+                                colors.darkFontColor;
+                              },
+                            );
+                          },
+                          items: [...statusList].map(
+                            (String st) {
+                              return DropdownMenuItem<String>(
+                                value: st,
+                                child: Text(
+                                  capitalize(st),
+                                  style: Theme.of(this.context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .fontColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              );
+                            },
+                          ).toList(),
+                        ),
+                      ),
+                    ),
+                    RawMaterialButton(
+                      constraints: const BoxConstraints.expand(
+                          width: 42, height: 42),
+                      onPressed: () {
+                        if (model.otp != "" &&
+                            model.otp!.isNotEmpty &&
+                            model.otp != "0" &&
+                            curStatus == DELIVERD) {
+                          otpDialog(
+                            curStatus,
+                            model.otp,
+                            model.id,
+                            false,
+                            0,
+                          );
+                        } else {
+                          updateOrder(
+                            curStatus,
+                            updateOrderApi,
+                            model.id,
+                            false,
+                            0,
+                          );
+                        }
+                      },
+                      elevation: 2.0,
+                      fillColor: Theme.of(context).colorScheme.fontColor,
+                      padding: const EdgeInsets.only(left: 5),
+                      shape: const CircleBorder(),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.send,
+                          size: 20,
+                          color: Theme.of(context).colorScheme.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
           showCircularProgress(
@@ -1018,6 +1018,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     final isReturnable = orderItem.status == 'return_request_approved' || orderItem.status == 'returned';
     final status = [...statusList, if(isReturnable) RETURNED];
 
+    print("status $status");
+
 
     return Card(
       elevation: 0,
@@ -1152,7 +1154,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.only(left: 5.0),
                                     child: Text(
                                           () {
-                                        /*if (capitalize(orderItem.status!) ==
+                                        if (capitalize(orderItem.status!) ==
                                             "Received") {
                                           return getTranslated(
                                               context, "received")!;
@@ -1197,7 +1199,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                             "Return_request_decline") {
                                           return getTranslated(context,
                                               "RETURN_REQUEST_DECLINE_LBL")!;
-                                        }*/
+                                        }
                                         return capitalize(orderItem.status! == "return_request_approved" ? "Pickup" : orderItem.status!);
                                       }(),
                                       maxLines: 2,

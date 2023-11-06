@@ -12,17 +12,17 @@ import 'Constant.dart';
 import 'Session.dart';
 import 'String.dart';
 
-FlutterTts flutterTts = FlutterTts();
 
-_speak(String bodyText) async{
+
+Future<void> _speak(String bodyText) async {
   await flutterTts.speak(bodyText);
 }
-
-
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+FlutterTts flutterTts = FlutterTts();
 
 class PushNotificationService {
   final BuildContext? context;
@@ -34,6 +34,7 @@ class PushNotificationService {
     iOSPermission();
     messaging.getToken().then(
       (token) async {
+        print("fcmToken $token");
         CUR_USERID = await getPrefrence(ID);
         if (CUR_USERID != null && CUR_USERID != "") _registerToken(token);
       },
@@ -56,6 +57,8 @@ class PushNotificationService {
       initializationSettings,
     );
 
+    await flutterTts.setLanguage('en-US');
+
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) {
         var data = message.notification!;
@@ -75,6 +78,8 @@ class PushNotificationService {
         }
       },
     );
+
+
   }
 
   void iOSPermission() async {
@@ -116,7 +121,7 @@ class PushNotificationService {
         summaryText: msg,
         htmlFormatSummaryText: true);
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'big text channel id', 'big text channel name',
+        'high_importance_channel', 'big text channel name',
         channelDescription: 'big text channel description',
         largeIcon: FilePathAndroidBitmap(largeIconPath),
         styleInformation: bigPictureStyleInformation,
@@ -130,7 +135,7 @@ class PushNotificationService {
   static Future<void> generateSimpleNotication(
       String title, String msg, String type) async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-      'your channel id',
+      'high_importance_channel',
       'your channel name',
       channelDescription: 'your channel description',
       importance: Importance.max,
@@ -151,6 +156,7 @@ class PushNotificationService {
   }
 }
 
+@pragma('vm:entry-point')
 Future<dynamic> myForgroundMessageHandler(RemoteMessage message) async {
   return Future<void>.value();
 }

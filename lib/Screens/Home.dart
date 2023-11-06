@@ -1547,7 +1547,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
         model.activeStatus == RETURNED) {
       back = Colors.red;
     } else if ((model.activeStatus) == PROCESSED) {
-      back = Colors.indigo;
+      back = colors.blue2;
     } else if (model.activeStatus == WAITING) {
       back = Theme.of(context).colorScheme.fontColor;
     } else if (model.itemList![0].status! == 'return_request_decline') {
@@ -1558,7 +1558,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
     } else if (model.itemList![0].status! == 'return_request_approved') {
       back = Colors.purple;
     } else {
-      back = Colors.cyan;
+      back = colors.primary1;
     }
 
     return Card(
@@ -1747,7 +1747,30 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                       color: colors.primary1,
                       size: 14,
                     ),
-                    Text("Priority: ${model.priority}")
+                    Row(
+                      children: [
+                        Text("Priority: "),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(3)
+                          ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 5, right: 5),
+                                child: Text("${model.priority}",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Roboto_Bold",
+                                  color: Colors.black
+                                ),),
+                              ),
+                            ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -1761,7 +1784,25 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                      color: colors.primary1,
                      size: 14,
                    ),
-                     Text("Return Status: Return Initiate")]
+                     Row(
+                       children: [
+                         Text("Return Status: "),
+                         Container(
+                             decoration: BoxDecoration(
+                                 color: Colors.red.withOpacity(0.5),
+                                 borderRadius: BorderRadius.circular(3),),
+                                 child: Padding(
+                                   padding: const EdgeInsets.all(4.0),
+                                   child: Text("Return Initiate",
+                                     style: TextStyle(
+                                         fontSize: 12,
+                                         fontWeight: FontWeight.w500,
+                                         fontFamily: "Roboto_Bold",
+                                         color: Colors.black
+                                     ),),
+                                 )),
+                       ],
+                     )]
                  ),
               )],
           ),
