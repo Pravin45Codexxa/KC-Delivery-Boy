@@ -1,4 +1,4 @@
-#Mon Nov 06 14:38:49 IST 2023
+#Mon Nov 06 16:36:24 IST 2023
 base.0=C\:\\Codexxa's Projects\\KITCHEN CARTAGE NEW UI\\KC-Delivery-Boy\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Codexxa's Projects\\KITCHEN CARTAGE NEW UI\\KC-Delivery-Boy\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Codexxa's Projects\\KITCHEN CARTAGE NEW UI\\KC-Delivery-Boy\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

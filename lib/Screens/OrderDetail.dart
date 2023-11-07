@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -52,6 +53,25 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
   String? curStatus;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   TextEditingController? otpC;
+  File imageFile = File("");
+
+  Future<File?> _getFromCamera() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.camera,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      if(mounted){
+        setState(() {
+          imageFile = File(pickedFile.path);
+        });
+      }
+
+    }
+
+  }
+
 
   @override
   void initState() {
@@ -128,6 +148,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       );
                     } else {
                       await buttonController!.reverse();
+                      if(mounted)
                       setState(
                             () {},
                       );
@@ -348,6 +369,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                               ? widget.model!.activeStatus
                               : null,
                           onChanged: (dynamic newValue) {
+                            if(mounted)
                             setState(
                               () {
                                 curStatus = newValue;
@@ -439,7 +461,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       context: context,
       builder: (BuildContext context) {
         return StatefulBuilder(
-            builder: (BuildContext context, StateSetter setStater) {
+            builder: (context, StateSetter setInnerState) {
               return AlertDialog(
                 contentPadding: const EdgeInsets.all(0.0),
                 shape: const RoundedRectangleBorder(
@@ -517,6 +539,84 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
+
+                      Padding(
+                        padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                        child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: Divider()
+                              ),
+
+                              Text("OR"),
+
+                              Expanded(
+                                  child: Divider()
+                              ),
+                            ]
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                await _getFromCamera().then((value) {
+                                  Navigator.pop(context);
+
+                                  var durtaion = new Duration(seconds: 3);
+
+                                  try{
+                                    return Timer(durtaion,  otpDialog(curSelected, otp, id, item, index));
+                                  }catch(e){
+                                    print("eeeeeeee  $e");
+                                  }
+
+                                });
+                              },
+                              child: imageFile.path.isNotEmpty ? Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      offset: Offset(0, 0),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image(image: FileImage(File(imageFile.path)),)),
+                              ) :
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      offset: Offset(0, 0),
+                                      blurRadius: 10,
+                                    )
+                                  ],
+                                ),
+                                child: Icon(Icons.camera_alt,
+                                  size: 50,
+                                  color: colors.primary1,),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -531,6 +631,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                     ),
                     onPressed: () {
                       Navigator.pop(context);
+                      imageFile = File("");
                     },
                   ),
                   TextButton(
@@ -545,6 +646,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       final form = _formkey.currentState!;
                       if (form.validate()) {
                         form.save();
+                        if(mounted)
                         setState(
                               () {
                             Navigator.pop(context);
@@ -1289,6 +1391,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                         ? null
                                         : orderItem.status,
                                     onChanged: (dynamic newValue) {
+                                      if(mounted)
                                       setState(
                                             () {
                                           orderItem.curSelected =
@@ -1389,6 +1492,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
       try {
+        if(mounted)
         setState(
               () {
             _isProgress = true;
@@ -1423,7 +1527,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             widget.model!.activeStatus = status;
           }
         }
-
+        if(mounted)
         setState(
               () {
             _isProgress = false;
@@ -1435,6 +1539,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
         );
       }
     } else {
+      if(mounted)
       setState(
             () {
           _isNetworkAvail = false;
