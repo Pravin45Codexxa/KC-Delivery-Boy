@@ -54,6 +54,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   TextEditingController? otpC;
   File imageFile = File("");
+  String otps = "";
 
   Future<File?> _getFromCamera() async {
     PickedFile? pickedFile = await ImagePicker().getImage(
@@ -148,10 +149,11 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       );
                     } else {
                       await buttonController!.reverse();
-                      if(mounted)
-                      setState(
+                      if(mounted) {
+                        setState(
                             () {},
                       );
+                      }
                     }
                   },
                 );
@@ -369,13 +371,14 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                               ? widget.model!.activeStatus
                               : null,
                           onChanged: (dynamic newValue) {
-                            if(mounted)
-                            setState(
+                            if(mounted) {
+                              setState(
                               () {
                                 curStatus = newValue;
                                 colors.darkFontColor;
                               },
                             );
+                            }
                           },
                           items: [...statusList].map(
                             (String st) {
@@ -511,7 +514,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                     color: Theme.of(context).colorScheme.fontColor),
                                 keyboardType: TextInputType.number,
                                 validator: (String? value) {
-                                  if (value!.isEmpty) {
+                                  otps = value!;
+                                  print("$otps otps");
+                                  if (value.isEmpty) {
                                     return getTranslated(context, FIELD_REQUIRED);
                                   } else if (value.trim() != otp) {
                                     return getTranslated(context, OTPERROR)!;
@@ -644,6 +649,47 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                     ),
                     onPressed: () {
                       final form = _formkey.currentState!;
+
+                      if(otps.isNotEmpty){
+                        if (form.validate()) {
+                          form.save();
+                          if(mounted) {
+                            setState(
+                                  () {
+                                Navigator.pop(context);
+                              },
+                            );
+                          }
+                          updateOrder(
+                            curSelected,
+                            updateOrderApi,
+                            id,
+                            item,
+                            index,
+                          );
+                        }
+                      }
+                      else{
+                        if(imageFile.path.isNotEmpty){
+                          if(mounted) {
+                            setState(
+                                  () {
+                                Navigator.pop(context);
+                              },
+                            );
+                          }
+                          updateOrder(
+                            curSelected,
+                            updateOrderApi,
+                            id,
+                            item,
+                            index,
+                          );
+                        }
+                      }
+
+
+                     /* final form = _formkey.currentState!;
                       if (form.validate()) {
                         form.save();
                         if(mounted)
@@ -659,7 +705,9 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                           item,
                           index,
                         );
-                      }
+                      }*/
+
+
                     },
                   ),
                 ],
@@ -1391,13 +1439,14 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                         ? null
                                         : orderItem.status,
                                     onChanged: (dynamic newValue) {
-                                      if(mounted)
-                                      setState(
+                                      if(mounted) {
+                                        setState(
                                             () {
                                           orderItem.curSelected =
                                               newValue;
                                         },
                                       );
+                                      }
                                     },
                                     items: status.map(
                                           (String st) {
@@ -1492,30 +1541,43 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
       try {
-        if(mounted)
-        setState(
+        if(mounted) {
+          setState(
               () {
             _isProgress = true;
           },
         );
+        }
 
-        var parameter = {
-          ORDERID: id,
-          STATUS: status,
-          DEL_BOY_ID: CUR_USERID,
+        var parameter = <String, String>{
+          ORDERID: id!,
+          STATUS: status!,
+          DEL_BOY_ID: CUR_USERID!,
         };
-        if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id;
+        if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id!;
         print(
             'response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
-        Response response = await post(
+        final req = MultipartRequest('post', updateOrderApi);
+        req.fields.addAll(parameter);
+        req.headers.addAll(headers);
+        if(imageFile.path.isNotEmpty) {
+          req.files.add(MultipartFile('image', imageFile.openRead(), imageFile.lengthSync(),
+            filename: imageFile.path.split('/').last));
+        }
+
+        final res = await req.send();
+
+        final getRes = await res.stream.bytesToString();
+
+      /*  Response response = await post(
             item ? updateOrderItemApi : updateOrderApi,
             body: parameter,
             headers: headers)
             .timeout(
           const Duration(seconds: timeOut),
         );
-        print('response body ${response.body}');
-        var getdata = json.decode(response.body);
+        print('response body ${response.body}');*/
+        var getdata = json.decode(getRes);
 
         bool error = getdata["error"];
         String msg = getdata["message"];
@@ -1527,24 +1589,26 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             widget.model!.activeStatus = status;
           }
         }
-        if(mounted)
-        setState(
+        if(mounted) {
+          setState(
               () {
             _isProgress = false;
           },
         );
+        }
       } on TimeoutException catch (_) {
         setSnackbar(
           getTranslated(context, somethingMSg)!,
         );
       }
     } else {
-      if(mounted)
-      setState(
+      if(mounted) {
+        setState(
             () {
           _isNetworkAvail = false;
         },
       );
+      }
     }
   }
 

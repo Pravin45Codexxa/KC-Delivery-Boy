@@ -1535,8 +1535,6 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
   orderItem(int index) {
     Order_Model model = orderList[index];
 
-    log("model --> ${model.isReturnApproved}");
-
     Color back;
 
     if ((model.activeStatus) == DELIVERD) {
