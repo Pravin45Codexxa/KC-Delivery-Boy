@@ -1531,6 +1531,87 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     );
   }
 
+  // Future<void> updateOrder(
+  //     String? status,
+  //     Uri api,
+  //     String? id,
+  //     bool item,
+  //     int index,
+  //     ) async {
+  //   _isNetworkAvail = await isNetworkAvailable();
+  //   if (_isNetworkAvail) {
+  //     try {
+  //       if(mounted) {
+  //         setState(
+  //             () {
+  //           _isProgress = true;
+  //         },
+  //       );
+  //       }
+  //
+  //       var parameter = <String, String>{
+  //         ORDERID: id!,
+  //         STATUS: status!,
+  //         DEL_BOY_ID: CUR_USERID!,
+  //       };
+  //       if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id!;
+  //       print(
+  //           'response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
+  //       final req = MultipartRequest('post', updateOrderApi);
+  //       req.fields.addAll(parameter);
+  //       req.headers.addAll(headers);
+  //       if(imageFile.path.isNotEmpty) {
+  //         req.files.add(MultipartFile('image', imageFile.openRead(), imageFile.lengthSync(),
+  //           filename: imageFile.path.split('/').last));
+  //       }
+  //
+  //       final res = await req.send();
+  //
+  //       final getRes = await res.stream.bytesToString();
+  //
+  //     /*  Response response = await post(
+  //           item ? updateOrderItemApi : updateOrderApi,
+  //           body: parameter,
+  //           headers: headers)
+  //           .timeout(
+  //         const Duration(seconds: timeOut),
+  //       );
+  //       print('response body ${response.body}');*/
+  //       var getdata = json.decode(getRes);
+  //
+  //       bool error = getdata["error"];
+  //       String msg = getdata["message"];
+  //       setSnackbar(msg);
+  //       if (!error) {
+  //         if (item) {
+  //           widget.model!.itemList![index].status = status;
+  //         } else {
+  //           widget.model!.activeStatus = status;
+  //         }
+  //       }
+  //       if(mounted) {
+  //         setState(
+  //             () {
+  //           _isProgress = false;
+  //         },
+  //       );
+  //       }
+  //     } on TimeoutException catch (_) {
+  //       setSnackbar(
+  //         getTranslated(context, somethingMSg)!,
+  //       );
+  //     }
+  //   } else {
+  //     if(mounted) {
+  //       setState(
+  //           () {
+  //         _isNetworkAvail = false;
+  //       },
+  //     );
+  //     }
+  //   }
+  // }
+
   Future<void> updateOrder(
       String? status,
       Uri api,
@@ -1541,13 +1622,11 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
       try {
-        if(mounted) {
-          setState(
+        setState(
               () {
             _isProgress = true;
           },
         );
-        }
 
         var parameter = <String, String>{
           ORDERID: id!,
@@ -1557,26 +1636,20 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
         if (item) parameter[ORDERITEMID] = widget.model!.itemList![index].id!;
         print(
             'response body ${parameter} $headers ${item ? updateOrderItemApi : updateOrderApi}');
+
+
+        if(imageFile.path.isNotEmpty) {
         final req = MultipartRequest('post', updateOrderApi);
         req.fields.addAll(parameter);
         req.headers.addAll(headers);
-        if(imageFile.path.isNotEmpty) {
+
           req.files.add(MultipartFile('image', imageFile.openRead(), imageFile.lengthSync(),
-            filename: imageFile.path.split('/').last));
-        }
+              filename: imageFile.path.split('/').last));
 
         final res = await req.send();
 
         final getRes = await res.stream.bytesToString();
 
-      /*  Response response = await post(
-            item ? updateOrderItemApi : updateOrderApi,
-            body: parameter,
-            headers: headers)
-            .timeout(
-          const Duration(seconds: timeOut),
-        );
-        print('response body ${response.body}');*/
         var getdata = json.decode(getRes);
 
         bool error = getdata["error"];
@@ -1591,26 +1664,56 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
         }
         if(mounted) {
           setState(
-              () {
-            _isProgress = false;
-          },
-        );
+                () {
+              _isProgress = false;
+            },
+          );
         }
+        }
+        else{
+          Response response = await post(
+              item ? updateOrderItemApi : updateOrderApi,
+              body: parameter,
+              headers: headers)
+              .timeout(
+            const Duration(seconds: timeOut),
+          );
+          print('response body ${response.body}');
+          var getdata = json.decode(response.body);
+
+          bool error = getdata["error"];
+          String msg = getdata["message"];
+          setSnackbar(msg);
+          if (!error) {
+            if (item) {
+              widget.model!.itemList![index].status = status;
+            } else {
+              widget.model!.activeStatus = status;
+            }
+          }
+
+          setState(
+                () {
+              _isProgress = false;
+            },
+          );
+        }
+
+
       } on TimeoutException catch (_) {
         setSnackbar(
           getTranslated(context, somethingMSg)!,
         );
       }
     } else {
-      if(mounted) {
-        setState(
+      setState(
             () {
           _isNetworkAvail = false;
         },
       );
-      }
     }
   }
+
 
   _launchCaller() async {
     var url = "tel:${widget.model!.mobile}";
