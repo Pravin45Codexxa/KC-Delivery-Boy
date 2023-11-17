@@ -369,7 +369,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                             'return_request_decline'
                           ].contains(widget.model!.activeStatus)
                               ? widget.model!.activeStatus
-                              : null,
+                              : widget.model!.activeStatus,
                           onChanged: (dynamic newValue) {
                             if(mounted) {
                               setState(
@@ -1398,8 +1398,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                         .fontColor,
                                     //iconSize: 40,
                                     hint: Text(
-                                      getTranslated(
-                                          context, UpdateStatus)!,
+                                      getTranslated(context, UpdateStatus)!,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall!

@@ -1280,7 +1280,8 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
     offset = 0;
     total = 0;
     orderList.clear();
-
+    getSetting();
+    getSaveDetail();
     setState(
       () {
         _isLoading = true;
