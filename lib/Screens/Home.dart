@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:deliveryboy/Helper/Session.dart';
+import 'package:deliveryboy/Screens/call_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1829,6 +1830,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
     var url = "tel:${orderList[index].mobile}";
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
+      CallApiClass().getBidderEnableApi(orderList[index].mobile.toString());
     } else {
       throw 'Could not launch $url';
     }
