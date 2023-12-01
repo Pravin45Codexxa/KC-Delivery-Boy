@@ -385,7 +385,14 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                               return DropdownMenuItem<String>(
                                 value: st,
                                 child: Text(
-                                  capitalize(st),
+                                    st == 'received' ?
+                                    "Accepted" :
+                                    st == 'processed' ?
+                                    "In Progress" :
+                                    st == 'shipped' ?
+                                    "Out for Delivery" :
+                                    st == 'delivered' ?
+                                    "Delivered" : capitalize(st),
                                   style: Theme.of(this.context)
                                       .textTheme
                                       .titleSmall!
@@ -1452,7 +1459,14 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                         return DropdownMenuItem<String>(
                                           value: st,
                                           child: Text(
-                                            capitalize(st),
+                                            st == 'received' ?
+                                            "Accepted" :
+                                            st == 'processed' ?
+                                            "In Progress" :
+                                            st == 'shipped' ?
+                                            "Out for Delivery" :
+                                            st == 'delivered' ?
+                                            "Delivered" : capitalize(st),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleSmall!

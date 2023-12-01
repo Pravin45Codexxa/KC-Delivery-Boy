@@ -1561,6 +1561,8 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
       back = colors.primary1;
     }
 
+    print("model.activeStatus! ${model.activeStatus!}");
+
     return Card(
       elevation: 0,
       margin: const EdgeInsets.all(5.0),
@@ -1593,7 +1595,13 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                         ),
                       ),
                       child: Text(
-                        capitalize(model.activeStatus!),
+                          model.activeStatus! == "received" ?
+                              "Accepted"
+                          : model.activeStatus! == "processed" ?
+                              "In Progress"
+                          : model.activeStatus! == "shipped" ?
+                              "Out for Delivery"
+                          : capitalize(model.activeStatus!),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.white,
                         ),
@@ -1632,22 +1640,26 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
+
+                    (model.activeStatus) != DELIVERD ?
                     InkWell(
-                      child: Row(
+                      child: const Row(
                         children: [
-                          Icon(
+                           Icon(
                             Icons.call,
                             color: Colors.green,
                             size: 25,
                             //color: Theme.of(context).colorScheme.fontColor,
-                          ),
+                          ) ,
 
                         ],
                       ),
                       onTap: () {
                         _launchCaller(index);
                       },
-                    ),
+                    )
+                        : Container(),
+
                   ],
                 ),
               ),
@@ -1749,7 +1761,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                     ),
                     Row(
                       children: [
-                        Text("Priority: "),
+                        const Text("Priority: "),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.blue.withOpacity(0.5),
@@ -1758,9 +1770,9 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: Padding(
-                                padding: EdgeInsets.only(left: 5, right: 5),
+                                padding: const EdgeInsets.only(left: 5, right: 5),
                                 child: Text("${model.priority}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: "Roboto_Bold",
@@ -1786,13 +1798,13 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                    ),
                      Row(
                        children: [
-                         Text("Return Status: "),
+                         const Text("Return Status: "),
                          Container(
                              decoration: BoxDecoration(
                                  color: Colors.red.withOpacity(0.5),
                                  borderRadius: BorderRadius.circular(3),),
-                                 child: Padding(
-                                   padding: const EdgeInsets.all(4.0),
+                                 child: const Padding(
+                                   padding: EdgeInsets.all(4.0),
                                    child: Text("Return Initiate",
                                      style: TextStyle(
                                          fontSize: 12,
@@ -1946,8 +1958,8 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
                 _refresh();
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                margin: EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: colors.primary1),
