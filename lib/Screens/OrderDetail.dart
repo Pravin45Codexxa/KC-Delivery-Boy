@@ -1329,7 +1329,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                             .colorScheme
                                             .lightfontColor,
                                       ),
-                                    )),
+                                    )
+                                  ),
                                 Expanded(
                                   flex: 3,
                                   child: Padding(
@@ -1385,17 +1386,15 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                       }(),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .copyWith(
-                                          color: /*Theme.of(context)
-                                                  .colorScheme
-                                                  .fontColor*/Colors.pinkAccent),
+                                      style: TextStyle(
+                                        color: capitalize(
+                                            orderItem.status!) ==
+                                            "Return_request_approved" ? Colors.green :
+                                        Colors.pinkAccent),
+                                      ),
                                     ),
                                   ),
-                                )
-                              ],
+                               ]
                             ),
                           ),
                         Text(
@@ -1754,7 +1753,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
 
 
   _launchCaller() async {
-    var url = "tel:${widget.model!.mobile}";
+    var url = "tel:${widget.model!.store_phone}";
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
       /*awaitingPayment launch $url;
