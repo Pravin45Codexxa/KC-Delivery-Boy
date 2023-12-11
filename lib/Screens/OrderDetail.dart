@@ -79,6 +79,31 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
     super.initState();
 
     curStatus = widget.model!.activeStatus;
+
+    print("curStatus ${widget.model!.activeStatus}");
+
+
+    if(curStatus == "processed"){
+      statusList = [
+        PROCESSED,
+        SHIPED,
+        DELIVERD,
+        CANCLED,
+      ];
+    } else if(curStatus == "shipped"){
+      statusList = [
+        SHIPED,
+        DELIVERD,
+        CANCLED,
+      ];
+    }else if(curStatus == "delivered"){
+      statusList = [
+        DELIVERD,
+      ];
+    }
+
+
+
     for (int i = 0; i < widget.model!.itemList!.length; i++) {
       widget.model!.itemList![i].curSelected =
           widget.model!.itemList![i].status;
@@ -1343,12 +1368,11 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                         } else if (capitalize(
                                             orderItem.status!) ==
                                             "Return_request_pending") {
-                                          return getTranslated(context,
-                                              "RETURN_REQUEST_PENDING_LBL")!;
+                                          return "Return Pending";
                                         } else if (capitalize(
                                             orderItem.status!) ==
                                             "Return_request_approved") {
-                                          return 'approved';
+                                          return 'Return Approved';
                                           // return getTranslated(context,
                                           //     RETURN_REQUEST_APPROVE_LBL)!;
                                         } else if (capitalize(

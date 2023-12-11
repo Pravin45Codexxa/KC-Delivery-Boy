@@ -1841,7 +1841,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
   _launchCaller(index) async {
     var url = "tel:${orderList[index].mobile}";
     if (await canLaunchUrlString(url)) {
-      await launchUrlString(url);
+      // await launchUrlString(url);
       CallApiClass().getBidderEnableApi(orderList[index].mobile.toString());
     } else {
       throw 'Could not launch $url';
