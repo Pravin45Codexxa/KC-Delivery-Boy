@@ -1561,7 +1561,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
       back = colors.primary1;
     }
 
-    print("model.activeStatus! ${model.activeStatus!}");
+    print("model.activeStatus! ${model}");
 
     return Card(
       elevation: 0,
@@ -1842,7 +1842,7 @@ class StateHome extends State<Home> with TickerProviderStateMixin {
     var url = "tel:${orderList[index].mobile}";
     if (await canLaunchUrlString(url)) {
       // await launchUrlString(url);
-      CallApiClass().getBidderEnableApi(orderList[index].mobile.toString());
+      CallApiClass().getBidderEnableApi(orderList[index].mobile.toString(), orderList[index].maskingNumber.toString());
     } else {
       throw 'Could not launch $url';
     }

@@ -8,7 +8,7 @@ class CallApiClass{
 
   final Dio dio = Dio();
 
-  Future<Map<String, dynamic>> getBidderEnableApi(String customerNum) async {
+  Future<Map<String, dynamic>> getBidderEnableApi(String customerNum, String callerId) async {
 
     final Dio dio = Dio();
 
@@ -24,7 +24,8 @@ class CallApiClass{
 
     var data = json.encode({
       "agent_number": mobile,
-      "destination_number": customerNum
+      "destination_number": customerNum,
+      "caller_id": callerId
     });
 
     var response = await dio.request(

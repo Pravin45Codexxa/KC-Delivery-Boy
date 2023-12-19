@@ -30,6 +30,8 @@ class Order_Model {
       activeStatus,
       otp,
       deliveryBoyId,
+      deliveryContact,
+      maskingNumber,
       invoice,
       delDate,
       delTime,
@@ -57,8 +59,11 @@ class Order_Model {
 
   @override
   String toString() {
-    return 'Order_Model{id: $id, name: $name, mobile: $mobile, latitude: $latitude, longitude: $longitude, delCharge: $delCharge, walBal: $walBal, promo: $promo, promoDis: $promoDis, payMethod: $payMethod, total: $total, returnInitiated: $returnInitiated, returnCompleted: $returnCompleted, subTotal: $subTotal, payable: $payable, address: $address, taxAmt: $taxAmt, taxPer: $taxPer, orderDate: $orderDate, dateTime: $dateTime, isCancleable: $isCancleable, isReturnable: $isReturnable, isAlrCancelled: $isAlrCancelled, isAlrReturned: $isAlrReturned, rtnReqSubmitted: $rtnReqSubmitted, activeStatus: $activeStatus, otp: $otp, deliveryBoyId: $deliveryBoyId, invoice: $invoice, delDate: $delDate, delTime: $delTime, cname: $cname, type: $type, cdate: $cdate, return_status: $order_status, amount: $amount, cashReceived: $cashReceived, message: $message, priority: $priority, pickupLocation: $pickupLocation, store_name: $store_name, store_email: $store_email, store_phone: $store_phone, store_address: $store_address, store_address_2: $store_address_2, store_city: $store_city, store_state: $store_state, store_country: $store_country, store_pin_code: $store_pin_code, store_latitude: $store_latitude, store_longitude: $store_longitude, itemList: $itemList, listStatus: $listStatus, listDate: $listDate}';
-  }
+    return 'Order_Model{deliveryBoyId: $deliveryBoyId, deliveryContact: $deliveryContact, maskingNumber: $maskingNumber}';
+  } // @override
+  // String toString() {
+  //   return 'Order_Model{id: $id, name: $name, mobile: $mobile, latitude: $latitude, longitude: $longitude, delCharge: $delCharge, walBal: $walBal, promo: $promo, promoDis: $promoDis, payMethod: $payMethod, total: $total, returnInitiated: $returnInitiated, returnCompleted: $returnCompleted, subTotal: $subTotal, payable: $payable, address: $address, taxAmt: $taxAmt, taxPer: $taxPer, orderDate: $orderDate, dateTime: $dateTime, isCancleable: $isCancleable, isReturnable: $isReturnable, isAlrCancelled: $isAlrCancelled, isAlrReturned: $isAlrReturned, rtnReqSubmitted: $rtnReqSubmitted, activeStatus: $activeStatus, otp: $otp, deliveryBoyId: $deliveryBoyId, invoice: $invoice, delDate: $delDate, delTime: $delTime, cname: $cname, type: $type, cdate: $cdate, return_status: $order_status, amount: $amount, cashReceived: $cashReceived, message: $message, priority: $priority, pickupLocation: $pickupLocation, store_name: $store_name, store_email: $store_email, store_phone: $store_phone, store_address: $store_address, store_address_2: $store_address_2, store_city: $store_city, store_state: $store_state, store_country: $store_country, store_pin_code: $store_pin_code, store_latitude: $store_latitude, store_longitude: $store_longitude, itemList: $itemList, listStatus: $listStatus, listDate: $listDate, deliveryContact: $deliveryContact, maskingNumber: $maskingNumber}';
+  // }
 
   List<OrderItem>? itemList = [];
   List<String?>? listStatus = [];
@@ -102,6 +107,8 @@ class Order_Model {
     this.delDate,
     this.delTime,
     this.deliveryBoyId,
+    this.deliveryContact,
+    this.maskingNumber,
     this.cname,
     this.type,
     this.cdate,
@@ -178,6 +185,8 @@ class Order_Model {
       delDate: parsedJson[DEL_DATE] ?? "",
       delTime: parsedJson[DEL_TIME] != "" ? parsedJson[DEL_TIME] : '',
       deliveryBoyId: parsedJson[DELIVERY_BOY_ID] ?? "",
+      deliveryContact: parsedJson['delivery_contact'],
+      maskingNumber: parsedJson['masking_number'],
       cname: parsedJson[NAME] ?? "",
       type: parsedJson[TYPE] ?? "",
       cdate: parsedJson[DATE_DEL] ?? "",
